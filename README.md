@@ -43,11 +43,10 @@ Tip: You can use `time` utility to display how much time the process took (less 
 1. Copy two files to FAT32-formatted flash memory
    - `installer.sh`
    - `rootfs.tgz`
-2. Boot device with HOME key pressed. If prompted, press 1.
-3. If you don't have U-boot installed, run `./switch-to-uboot` 
-4. Mount USB device: `mount -t vfat /dev/sda1 /mnt`
-5. Start installer and follow instructions: `sh /mnt/installer.sh`
-6. Reboot device, wait 1-2 minutes to see setup wizard and finish installation.
+2. If you don't have U-boot installed, run `./switch-to-uboot` 
+3. Mount USB device: `mount -t vfat /dev/sda1 /mnt`
+4. Start installer and follow instructions: `sh /mnt/installer.sh`
+5. Reboot device, wait 1-2 minutes to see setup wizard and finish installation.
 
 ## Additional resources
 
