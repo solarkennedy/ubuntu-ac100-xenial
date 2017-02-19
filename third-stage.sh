@@ -31,6 +31,7 @@ apt install oem-config-gtk ubiquity-frontend-gtk -y
 
 cat <<'EOF' > /etc/fstab
 /dev/mmcblk0p1   /   ext4   rw,noatime,commit=30,barrier=1,data=ordered   0   0
+/swapfile   none   swap   sw   0   0
 EOF
 
 #### Fix flash-kernel utility
@@ -51,7 +52,7 @@ dpkg -i /tmp/linux-image-ac100_3.16*.deb
 
 #### Configure swap 
 
-echo 'vm.swappiness = 25' >> /etc/sysctl.conf
+echo 'vm.swappiness = 15' >> /etc/sysctl.conf
 
 #### Add user
 

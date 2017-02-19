@@ -10,7 +10,7 @@ fi
 #### Building core filesystem
 
 rm -rf rfs
-debootstrap --arch=armhf --foreign --variant=minbase --include=console-setup,keyboard-configuration xenial rfs
+debootstrap --arch=armhf --foreign --variant=minbase xenial rfs
 cd rfs
 cp /usr/bin/qemu-arm-static usr/bin
 chroot . /debootstrap/debootstrap --second-stage
@@ -45,8 +45,8 @@ rm -rf root/.bash_history
 
 #### Creating final package
 
-rm -rf ../rootfs.tgz
-tar -czvpf ../rootfs.tgz .
+rm -rf ../rootfs.tar.xz
+tar -cJvpf ../rootfs.tar.xz .
 echo "Done."
 cd ..
 rm -rf rfs

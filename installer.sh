@@ -17,8 +17,8 @@ fi
 
 #### Files check
 
-if [ ! -f /mnt/rootfs.tgz ]; then
-	echo "System image missing (make sure rootfs.tgz file is present)"
+if [ ! -f /mnt/rootfs.tar.xz ]; then
+	echo "System image missing (make sure rootfs.tar.xz file is present)"
 	exit
 fi
 
@@ -33,8 +33,8 @@ read
 
 sleep 2
 
-echo "  -->  Preparing root storage..."
-dd if=/dev/zero of=/dev/mmcblk0 bs=1M count=100
+echo "Preparing root storage..."
+dd if=/dev/zero of=/dev/mmcblk0 bs=1024 count=50
 parted /dev/mmcblk0 mklabel gpt
 parted /dev/mmcblk0 -s mkpart primary 7168s '100%'
 parted /dev/mmcblk0 -s name 1 UDB
@@ -42,14 +42,17 @@ mkfs.ext4 /dev/mmcblk0p1
 mkdir /target
 mount -t ext4 /dev/mmcblk0p1 /target
 
-echo "  -->  Copying system files..."
+echo "Copying system files (this may take some time)..."
 cd /target
-gunzip < /mnt/rootfs.tgz | tar xpf -
+xz -d < /mnt/rootfs.tar.xz | tar xpf -
 
-echo "  -->  Housekeeping..."
+echo "Creating swap file..."
+dd if=/dev/zero of=/swapfile bs=1024 count=524288
+mkswap /swapfile
+
 cd /
 sync
 umount /target
 
 echo ""
-echo "Done. Please remove all external media and then press Ctrl+Alt+Del to reboot."
+echo "Done. Please reboot your computer."

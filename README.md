@@ -42,7 +42,7 @@ Tip: You can use `time` utility to display how much time the process took (less 
 
 1. Copy two files to FAT32-formatted flash memory
    - `installer.sh`
-   - `rootfs.tgz`
+   - `rootfs.tar.xz`
 2. If you don't have U-boot installed, run `./switch-to-uboot` 
 3. Mount USB device: `mount -t vfat /dev/sda1 /mnt`
 4. Start installer and follow instructions: `sh /mnt/installer.sh`
@@ -59,6 +59,13 @@ Without them, I wouldn't be able to create this project
 
 ## Changelog
 
+### 2017-02-19
+
+- Swap file will be created during installation
+- Output file is now compressed with XZ
+
+Starting this release, I will *try* to upload output files.
+
 ### 2017-02-07
 
 - First experimental release
@@ -66,7 +73,7 @@ Without them, I wouldn't be able to create this project
 ## Copyright
 
 ```
-	Ubuntu 16.04 build scripts for Toshiba AC100
+    Ubuntu 16.04 build scripts for Toshiba AC100
     Copyright (C) 2015-2017 Mateusz Nowak
 
     This program is free software: you can redistribute it and/or modify
