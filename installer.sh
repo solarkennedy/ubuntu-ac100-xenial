@@ -47,8 +47,8 @@ cd /target
 xz -d < /mnt/rootfs.tar.xz | tar xpf -
 
 echo "Creating swap file..."
-dd if=/dev/zero of=/swapfile bs=1024 count=524288
-mkswap /swapfile
+dd if=/dev/zero of=/target/swapfile bs=1024 count=524288
+mkswap /target/swapfile
 
 cd /
 sync
